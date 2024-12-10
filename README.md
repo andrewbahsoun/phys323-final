@@ -121,6 +121,10 @@ The model is trained using a basic tensorflow CNN model. Its layers look like su
 
 ## Results
 
+The results were positive. I ended up with an accuracy rate around 88%. 
+
+<img src="images/confusion_final2.png" alt="drawing" width="400"/>
+
 
 
 # phys323-final
