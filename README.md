@@ -1,3 +1,4 @@
+![Testing Workflow](https://github.com/andrewbahsoun/phys323-final/actions/workflows/python-package-conda.yml/badge.svg)
 # Physics 323 Final Project
 
 ## Project Context
