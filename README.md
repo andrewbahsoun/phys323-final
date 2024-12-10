@@ -121,7 +121,7 @@ The model is trained using a basic tensorflow CNN model. Its layers look like su
 
 ## Results
 
-The results were positive. I ended up with an accuracy rate around 88%. 
+The results were positive. I ended up with an accuracy rate around 88%. I was able to get the "live" result to work as well. I recorded a live demo and uploaded it to [youtube](https://youtu.be/moEpnU08rcM) 
 
 <img src="images/confusion_final2.png" alt="drawing" width="400"/>
 
