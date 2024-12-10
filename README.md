@@ -24,47 +24,99 @@ The preprocessing works by entering every video and taking screenshots of each f
 
 The model is trained using a basic tensorflow CNN model. Its layers look like such: 
 
-    Layer (type)                  ┃ Output Shape           ┃       Param # ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ conv2d (Conv2D)                 │ (None, 180, 180, 8)    │           608 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d (MaxPooling2D)    │ (None, 90, 90, 8)      │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout (Dropout)               │ (None, 90, 90, 8)      │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_1 (Conv2D)               │ (None, 90, 90, 16)     │         1,168 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_1 (MaxPooling2D)  │ (None, 45, 45, 16)     │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_1 (Dropout)             │ (None, 45, 45, 16)     │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ conv2d_2 (Conv2D)               │ (None, 45, 45, 32)     │        12,832 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ max_pooling2d_2 (MaxPooling2D)  │ (None, 22, 22, 32)     │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_2 (Dropout)             │ (None, 22, 22, 32)     │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ flatten (Flatten)               │ (None, 15488)          │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense (Dense)                   │ (None, 256)            │     3,965,184 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_3 (Dropout)             │ (None, 256)            │             0 │
-├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_1 (Dense)                 │ (None, 12)             │         3,084 │
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ sequential_2 (Sequential)            │ (None, 128, 128, 3)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ rescaling_3 (Rescaling)              │ (None, 128, 128, 3)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_3 (Conv2D)                    │ (None, 128, 128, 32)        │             896 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_4                │ (None, 128, 128, 32)        │             128 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_3 (MaxPooling2D)       │ (None, 64, 64, 32)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_4 (Conv2D)                    │ (None, 64, 64, 64)          │          18,496 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_5                │ (None, 64, 64, 64)          │             256 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_4 (MaxPooling2D)       │ (None, 32, 32, 64)          │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ conv2d_5 (Conv2D)                    │ (None, 32, 32, 128)         │          73,856 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_6                │ (None, 32, 32, 128)         │             512 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ max_pooling2d_5 (MaxPooling2D)       │ (None, 16, 16, 128)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_2 (Dropout)                  │ (None, 16, 16, 128)         │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ flatten_1 (Flatten)                  │ (None, 32768)               │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_2 (Dense)                      │ (None, 256)                 │       8,388,864 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ batch_normalization_7                │ (None, 256)                 │           1,024 │
+│ (BatchNormalization)                 │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_3 (Dropout)                  │ (None, 256)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_3 (Dense)                      │ (None, 12)                  │           3,084 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 8,487,116 (32.38 MB)
+ Trainable params: 8,486,156 (32.37 MB)
+ Non-trainable params: 960 (3.75 KB)
 
-1. **`conv2d` (Conv2D):** Extracts 8 feature maps from the input image using 2D convolution with a kernel, reducing spatial complexity.  
-2. **`max_pooling2d` (MaxPooling2D):** Down-samples the feature maps by taking the maximum value in a 2x2 window, reducing spatial dimensions.  
-3. **`dropout`:** Randomly drops some connections to reduce overfitting during training.  
-4. **`conv2d_1` (Conv2D):** Extracts 16 higher-level feature maps from the pooled output, adding complexity to the learned features.  
-5. **`max_pooling2d_1`:** Further reduces spatial dimensions while retaining key features.  
-6. **`dropout_1`:** Adds regularization to prevent overfitting in this layer.  
-7. **`conv2d_2` (Conv2D):** Extracts 32 more detailed feature maps, capturing more complex patterns.  
-8. **`max_pooling2d_2`:** Further reduces the size of feature maps to make computation efficient.  
-9. **`dropout_2`:** Applies regularization again to prevent overfitting.  
-10. **`flatten`:** Flattens the 3D feature maps into a 1D vector for input to the dense layers.  
-11. **`dense`:** A fully connected layer with 256 neurons to learn patterns and relationships in the flattened features.  
-12. **`dropout_3`:** Regularizes the fully connected layer to avoid overfitting.  
-13. **`dense_1`:** Output layer with 12 neurons, corresponding to the 12 classification steps, using softmax activation.
+### Explaination of the Layers
+
+1. **`Rescaling` (Rescaling):**
+   - Normalizes input pixel values from [0, 255] to [0, 1] for consistency
+
+2. **`Conv2D` (conv2d_3):**
+   - Applies 32 convolutional filters of size 3*3 to extract low-level features like edges
+
+3. **`BatchNormalization` (batch_normalization_4):**
+   - Normalizes the feature maps to stabilize and speed up training.
+
+4. **`MaxPooling2D` (max_pooling2d_3):**
+   - Reduces the spatial dimensions to 64*64, retaining important features and reducing computation.
+
+5. **`Conv2D` (conv2d_4):**
+   - Applies 64 convolutional filters of size 3*3 to learn more complex patterns
+
+6. **`BatchNormalization` (batch_normalization_5):**
+   - Normalizes the feature maps for the second convolutional layer.
+
+7. **`MaxPooling2D` (max_pooling2d_4):**
+   - Further reduces spatial dimensions to 32*32, summarizing learned features
+
+8. **`Conv2D` (conv2d_5):**
+   - Uses 128 filters to capture high-level features at 32*32 resolution.
+
+9. **`BatchNormalization` (batch_normalization_6):**
+   - Normalizes the feature maps for the third convolutional layer.
+
+10. **`MaxPooling2D` (max_pooling2d_5):**
+    - Reduces spatial dimensions to 16*16, retaining essential information.
+
+11. **`Dropout` (dropout_2):**
+    - Randomly drops 50% of neurons to reduce overfitting during training.
+
+12. **`Flatten` (flatten_1):**
+    - Converts the 3D tensor 16*16*128 into a 1D vector of size 32,768 for dense layers.
+
+13. **`Dense` (dense_2):**
+    - Fully connected layer with 256 neurons to learn complex relationships from the flattened features.
+
+14. **`BatchNormalization` (batch_normalization_7):**
+    - Normalizes the outputs of the dense layer for stability and faster convergence.
+
+15. **`Dropout` (dropout_3):**
+    - Drops 50% of the neurons in the dense layer to prevent overfitting.
+
+16. **`Dense` (dense_3):**
+    - Final output layer with 12 neurons, each representing a class. Uses softmax activation to output class probabilities.
 
 ## Results
 
