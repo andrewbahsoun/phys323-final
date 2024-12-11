@@ -126,5 +126,4 @@ The results were positive. I ended up with an accuracy rate around 88%. I was ab
 <img src="images/confusion_final2.png" alt="drawing" width="400"/>
 
 
-
 # phys323-final
