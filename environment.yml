@@ -1,6 +1,5 @@
 name: tests
 dependencies:
-  - os
   - numpy
   - tensorflow
-  - sklearn
+  - scikit-learn
